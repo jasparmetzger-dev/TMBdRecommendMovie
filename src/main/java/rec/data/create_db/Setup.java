@@ -12,6 +12,7 @@ public class Setup {
                     id INTEGER PRIMARY KEY AUTOINCREMENT,
                     tmbd_id INTEGER NOT NULL,
                     title TEXT NOT NULL,
+                    genres TEXT,
                     rating REAL);
                     """;
 
@@ -23,4 +24,5 @@ public class Setup {
         }
 
     }
+
 }
