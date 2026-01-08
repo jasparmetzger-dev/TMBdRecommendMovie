@@ -1,4 +1,4 @@
-package rec.data.create_database;
+package rec.data.create_db;
 
 import java.sql.Connection;
 import java.sql.SQLException;
