@@ -1,4 +1,4 @@
-package rec.data.fetch;
+package data.fetch;
 
 public class Main {
     static void main(String[] args) {

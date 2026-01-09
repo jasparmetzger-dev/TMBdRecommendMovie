@@ -1,4 +1,4 @@
-package rec.data.fetch;
+package model;
 
 public class Movie {
     public int tmbdId;
@@ -6,11 +6,12 @@ public class Movie {
     public String genres;
     public double rating;
 
-    Movie(int tmbdId, String title, String genres, double rating) {
+    public Movie(int tmbdId, String title, String genres, double rating) {
         this.tmbdId = tmbdId;
         this.title = title;
         this.genres = genres;
         this.rating = rating;
     }
+
 
 }

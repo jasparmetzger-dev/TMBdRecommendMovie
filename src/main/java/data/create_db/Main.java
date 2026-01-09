@@ -1,4 +1,4 @@
-package rec.data.create_db;
+package data.create_db;
 
 import java.sql.Connection;
 

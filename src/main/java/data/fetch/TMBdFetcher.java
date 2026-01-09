@@ -1,6 +1,7 @@
-package rec.data.fetch;
+package data.fetch;
 
 import io.github.cdimascio.dotenv.Dotenv;
+import model.Movie;
 import org.jetbrains.annotations.NotNull;
 import org.json.JSONArray;
 import org.json.JSONObject;
