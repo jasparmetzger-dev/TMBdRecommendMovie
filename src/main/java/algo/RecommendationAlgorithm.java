@@ -11,14 +11,14 @@ public class RecommendationAlgorithm {
     List<Movie> seenMovies;
 
 
-    public RecommendationAlgorithm(User user) {
+    /*public RecommendationAlgorithm(User user) {
         this.user = user;
 
         this.seenMovies = new ArrayList<>();
         for (String movieTitle : user.watchedFilms) {
             seenMovies.add(Repository.getMovie(movieTitle));
         }
-    }
+    } */
 
     public Vector makeUserVector() {
         Vector v = new Vector(new double[19]); //19 genres

@@ -47,7 +47,7 @@ public class User {
         } else throw new SecurityException("Wrong password, access denied");
     }
 
-    public void addWatchedFilms(@NotNull String[] titles) {
+    /* public void addWatchedFilms(@NotNull String[] titles) {
         for (String title : titles) {
             try {
                 Movie movie = Repository.getMovie(title);
@@ -56,7 +56,7 @@ public class User {
                 System.out.print("Couldn't find Movie " + title + ": " + e.getMessage());
             }
         }
-    }
+    } */
     public void deleteWatchedFilms(@NotNull String[] seenTitles) {
         for (String seenTitle : seenTitles) {
             try {

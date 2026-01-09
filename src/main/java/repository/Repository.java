@@ -30,9 +30,9 @@ public class Repository {
     }
 
 
-    public static Movie getMovie(String title) {
+    /*public static Movie getMovie(String title) {
         return new Movie();
-    }
+    } */
     public static boolean isUserAdded(String username) {
         for (User addedUser : userList) {
             if (addedUser.username.equals(username)) return true;
