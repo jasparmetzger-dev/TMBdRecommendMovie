@@ -5,6 +5,7 @@ import model.User;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.NoSuchElementException;
 
 public class Repository {
 
@@ -18,9 +19,18 @@ public class Repository {
     public static void deleteUser(User user) {
         userList.remove(user);
     }
+    public static User getUser(String username) {
+        if (isUserAdded(username)) {
+           for (User user : userList) {
+               if (user.username.equals(username)) {
+                   return user;
+               }
+           }
+        } throw new NoSuchElementException("User not found");
+    }
 
 
-    public static Movie findMovie(String title) {
+    public static Movie getMovie(String title) {
         return new Movie();
     }
     public static boolean isUserAdded(String username) {

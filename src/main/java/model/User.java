@@ -26,7 +26,9 @@ public class User {
         autoincrement++;
     }
 
-
+    public boolean checkPassword(String password) {
+        return password.equals(decode(encodedPassword));
+    }
     protected String encode(String password) {
         return Base64.getEncoder().encodeToString(password.getBytes(StandardCharsets.UTF_8));
     }
@@ -48,7 +50,7 @@ public class User {
     public void addWatchedFilms(@NotNull String[] titles) {
         for (String title : titles) {
             try {
-                Movie movie = Repository.findMovie(title);
+                Movie movie = Repository.getMovie(title);
                 this.watchedFilms.add(title);
             } catch (Exception e) {
                 System.out.print("Couldn't find Movie " + title + ": " + e.getMessage());

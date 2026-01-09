@@ -39,9 +39,9 @@ public class TMBdFetcher {
         String genres = "";
         if (movieJSON.has("genres")) {
 
-            StringBuilder sb = new StringBuilder();
+            //Supposed to return a
             JSONArray arr = movieJSON.getJSONArray("genres");
-
+            StringBuilder sb = new StringBuilder();
             for (int i = 0; i < arr.toList().size(); i++) {
                 String genre = arr.getJSONObject(i).getString("name");
                 sb.append(genre);
