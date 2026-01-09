@@ -11,7 +11,7 @@ import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 import java.net.URI;
 
-public class TMBdFetcher {
+/* public class TMBdFetcher {
     private static final String TMBD_API_KEY = Dotenv.load().get("TMBD_API_KEY");
 
     public static JSONObject getMovie(int tmbdId) {
@@ -59,4 +59,4 @@ public class TMBdFetcher {
         return rating / maxRating;
 
     }
-}
+} */
