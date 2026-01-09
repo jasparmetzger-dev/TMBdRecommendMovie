@@ -7,10 +7,10 @@ import java.util.List;
 public class Movie {
     public int tmdbId;
     public String title;
-    public String genres;
     public double rating;
-    public Vector genreVector;
+    public String genres;
     public int[] genreIds;
+    public Vector genreVector;
 
     public Movie(int tmdbId, String title, int[] tmdbGenreIds, double rating) {
         this.tmdbId = tmdbId;
@@ -18,7 +18,7 @@ public class Movie {
         this.genreIds = getIdsFromTmdbId(tmdbGenreIds);
         this.genres = getGenresFromTmdbId(tmdbGenreIds);
         this.rating = rating;
-        this.genreVector = makeGenreVector(genres);
+        this.genreVector = makeGenreVector();
     }
 
     private int[] getIdsFromTmdbId(int[] Ids) {
@@ -42,14 +42,10 @@ public class Movie {
         return sb.toString();
     }
 
-    private Vector makeGenreVector(String genres) {
-        String[] genreList = genres.trim().split(",");
+    private Vector makeGenreVector() {
         Vector v = new Vector(new double[19]);
-        for (String genre : genreList) {
-            Integer idx = GenreVector.GenreIdx.get(genre);
-            if (idx != null) {
-                v.setElement(idx, 1);
-            }
+        for (Integer genreIdx : genreIds) {
+            v.setElement(genreIdx, 1);
         }
         v.normalize();
         return v;

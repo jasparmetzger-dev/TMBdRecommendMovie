@@ -17,6 +17,7 @@ public class Vector {
     public void setElement(int idx, double ele) {
         this.elements[idx] = ele;
     }
+    public double[] getDoubles() {return elements;}
 
     public double norm() {
         double lenSqared = 0;

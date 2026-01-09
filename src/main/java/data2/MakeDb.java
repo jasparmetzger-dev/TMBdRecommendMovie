@@ -22,7 +22,7 @@ public class MakeDb {
     static Connection connect() throws SQLException {
         try {
             Connection conn = DriverManager.getConnection(DB_URL);
-            System.out.print("Connection to db successful.");
+            System.out.print("Connection to db successful. ");
             return conn;
         } catch (SQLException e) {
             System.out.print("Connection failed: " + e.getMessage());
@@ -34,12 +34,14 @@ public class MakeDb {
 
         String sql = """
                 CREATE TABLE IF NOT EXISTS movies (
-                id INTEGER PRIMARY KEY,
-                tmdb_id NOT NULL,
+                id INTEGER PRIMARY KEY AUTOINCREMENT,
+                tmdb_id INT NOT NULL,
                 title TEXT UNIQUE NOT NULL,
+                rating REAL,
                 genres TEXT,
-                genre_vector VECTOR,
-                rating REAL)
+                genre_ids TEXT,
+                genre_vector TEXT
+                )
                 """;
 
         try (Statement stmt = conn.createStatement()) {
