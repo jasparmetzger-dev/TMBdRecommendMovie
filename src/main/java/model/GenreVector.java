@@ -32,7 +32,7 @@ public class GenreVector {
             }
             """;
 
-    public static Vector<double> =
+
 
     public static JSONObject genres = new JSONObject(jsonString);
     public static JSONArray genresArray = genres.getJSONArray("genres");
