@@ -1,4 +1,4 @@
-package data2;
+package data.download;
 
 
 import com.fasterxml.jackson.core.JsonProcessingException;
@@ -10,7 +10,6 @@ import com.omertron.themoviedbapi.results.ResultList;
 import io.github.cdimascio.dotenv.Dotenv;
 import model.Movie;
 
-import java.util.Arrays;
 import java.util.List;
 
 public class FetchData {

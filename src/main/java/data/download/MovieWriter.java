@@ -1,4 +1,4 @@
-package data2;
+package data.download;
 
 import model.Movie;
 
@@ -15,7 +15,7 @@ public class MovieWriter {
     public static void writeMovieBatch(List<Movie> movies) {
 
         String sql = """
-                INSERT INTO movies (tmdb_id, title, rating, genres, genre_ids, genre_vector)
+                INSERT OR IGNORE INTO movies (tmdb_id, title, rating, genres, genre_ids, genre_vector)
                 VALUES ( ? , ? , ? , ? , ? , ? )
                 """;
         try (Connection conn = DriverManager.getConnection(DB_URL)) {

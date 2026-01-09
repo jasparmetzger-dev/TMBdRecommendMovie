@@ -1,4 +1,4 @@
-package data2;
+package data.download;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -35,8 +35,8 @@ public class MakeDb {
         String sql = """
                 CREATE TABLE IF NOT EXISTS movies (
                 id INTEGER PRIMARY KEY AUTOINCREMENT,
-                tmdb_id INT NOT NULL,
-                title TEXT UNIQUE NOT NULL,
+                tmdb_id INT UNIQUE NOT NULL,
+                title TEXT NOT NULL,
                 rating REAL,
                 genres TEXT,
                 genre_ids TEXT,
@@ -49,6 +49,5 @@ public class MakeDb {
         } catch (SQLException e) {
             System.out.print("Failed to execute statement: " + e.getMessage());
         }
-
     }
 }

@@ -1,4 +1,4 @@
-package data2;
+package data.download;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.omertron.themoviedbapi.MovieDbException;
@@ -13,12 +13,12 @@ public class Main {
         final int MAX_PAGE = (int) MAX_MOVIES / 20;
 
 
-        for (int page = 1; page < 2/*MAX_PAGE*/; page++) {
+        for (int page = 1; page < MAX_PAGE; page++) {
 
             List<Movie> movies = FetchData.fetchMovieBatch(page);
             MovieWriter.writeMovieBatch(movies);
 
-            System.out.print(">> Success: done with " + page * 20 + " Objects");
+            System.out.print(">> Success: done with " + page * 20 + " Objects\n");
         }
     }
 }
