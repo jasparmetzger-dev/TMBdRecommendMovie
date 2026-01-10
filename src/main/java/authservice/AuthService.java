@@ -1,10 +1,10 @@
 package authservice;
 
-import model.*;
+import model.user.User;
+import model.user.userRoles;
 import repository.Repository;
 
 import java.rmi.AccessException;
-import java.util.Scanner;
 
 public class AuthService {
     public static boolean loggedIn;

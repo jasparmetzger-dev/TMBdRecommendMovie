@@ -1,8 +1,8 @@
-package model;
+package model.user;
 
 import repository.Repository;
 
-public class Admin extends User{
+public class Admin extends User {
 
     public Admin(String name, String password) {
         super(name, password);

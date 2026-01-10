@@ -2,7 +2,7 @@ package data.download;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.omertron.themoviedbapi.MovieDbException;
-import model.Movie;
+import model.movie.Movie;
 
 import java.util.List;
 

@@ -1,12 +1,10 @@
-package model;
+package model.user;
 
 import org.jetbrains.annotations.NotNull;
-import repository.Repository;
 
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.Base64;
-import java.util.Collection;
 import java.util.List;
 
 public class User {

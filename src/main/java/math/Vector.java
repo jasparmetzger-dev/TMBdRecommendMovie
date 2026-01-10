@@ -70,4 +70,8 @@ public class Vector {
         return Vector.scalarMultiply(scalar, goal);
     }
 
+    public static Vector StringToVector(String str) { //
+        return new Vector(new double[19]);
+    }
+
 }

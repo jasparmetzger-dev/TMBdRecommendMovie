@@ -35,12 +35,9 @@ public class MakeDb {
         String sql = """
                 CREATE TABLE IF NOT EXISTS movies (
                 id INTEGER PRIMARY KEY AUTOINCREMENT,
-                tmdb_id INT UNIQUE NOT NULL,
-                title TEXT NOT NULL,
+                title TEXT UNIQUE NOT NULL,
                 rating REAL,
-                genres TEXT,
-                genre_ids TEXT,
-                genre_vector TEXT
+                genre_ids TEXT
                 )
                 """;
 

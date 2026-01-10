@@ -1,8 +1,8 @@
 package algo;
 
 import math.Vector;
-import model.*;
-import repository.Repository;
+import model.movie.Movie;
+import model.user.User;
 
 import java.util.*;
 

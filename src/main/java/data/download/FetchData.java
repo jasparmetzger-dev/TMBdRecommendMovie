@@ -8,8 +8,10 @@ import com.omertron.themoviedbapi.TheMovieDbApi;
 import com.omertron.themoviedbapi.model.movie.MovieInfo;
 import com.omertron.themoviedbapi.results.ResultList;
 import io.github.cdimascio.dotenv.Dotenv;
-import model.Movie;
+import model.movie.Mappings;
+import model.movie.Movie;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class FetchData {
@@ -32,27 +34,22 @@ public class FetchData {
              throw new RuntimeException(e);
          }
 
-         ObjectMapper mapper = new ObjectMapper();
-         String json;
-         try {
-             json = mapper.writerWithDefaultPrettyPrinter()
-                     .writeValueAsString(MovieInfoLst.getResults());
-         } catch (JsonProcessingException e) {
-             throw new RuntimeException(e);
-         }
-
          List<Movie> movies = MovieInfoLst.getResults().stream().map(
                 m -> {
 
-                    List<Integer> lst = m.getGenreIds();
+                    List<Integer> original_lst = m.getGenreIds();
+                    List<Integer> lst = new ArrayList<>();
+                    for (Integer i : original_lst) {
+                        lst.add(Mappings.genreIdMap.get(i));
+                    }
+
                     int[] arr = new int[lst.size()];
                     for (int i = 0; i < lst.size(); i++) arr[i] = lst.get(i);
 
                     Movie movie = new Movie(
-                            m.getId(),
                             m.getTitle(),
-                            arr,
-                            m.getVoteAverage()
+                            m.getVoteAverage(),
+                            arr
                     );
                     return movie;
                 }
@@ -60,6 +57,4 @@ public class FetchData {
 
          return movies;
     }
-
-
 }
