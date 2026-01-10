@@ -5,6 +5,7 @@ import model.movie.Movie;
 import model.user.User;
 
 import java.sql.*;
+import java.util.ArrayList;
 import java.util.List;
 
 import static data.manage.TypeConversionHelpers.StringToIntArr;
@@ -30,7 +31,9 @@ public class DatabaseDAO {
             stmt.setInt(1, id);
 
             try (ResultSet rs = stmt.executeQuery()) {
-                return makeResultSetMovie(rs);
+                if (rs.next()) {
+                    return makeResultSetMovie(rs);
+                } else return null;
             }
         }
         catch (SQLException e) {
@@ -51,7 +54,9 @@ public class DatabaseDAO {
             stmt.setString(1, title);
 
             try (ResultSet rs = stmt.executeQuery()) {
-                return makeResultSetMovie(rs);
+                if (rs.next()) {
+                    return makeResultSetMovie(rs);
+                } else return null;
             }
         }
         catch (SQLException e) {
@@ -60,6 +65,19 @@ public class DatabaseDAO {
         }
         return null;
     }
+    public static List<Movie> getAllMovies() throws SQLException {
+        String sql = """
+                SELECT * FROM MOVIES
+                """;
+        ResultSet rs = executeDbQuery(sql);
+        List<Movie> allMovies = new ArrayList<>();
+        while (rs.next()) {
+            Movie m = makeResultSetMovie(rs);
+            allMovies.add(m);
+        }
+        return allMovies;
+    }
+
     public static User getUserbyId(int id) {
         return null;
     }
@@ -74,7 +92,7 @@ public class DatabaseDAO {
             throw new SQLException(e);
         }
     }
-    public static void executeStatement(String sql) {
+    public static void executeDbStatement(String sql) {
         try (Connection conn = DriverManager.getConnection(DB_URL)) {
             Statement stmt = conn.createStatement();
             stmt.execute(sql);
@@ -83,18 +101,24 @@ public class DatabaseDAO {
             e.printStackTrace();
         }
     }
+    public static ResultSet executeDbQuery(String sql) {
+        try (Connection conn = DriverManager.getConnection(DB_URL)) {
+            Statement stmt = conn.createStatement();
+            return stmt.executeQuery(sql);
+        } catch (SQLException e) {
+            System.out.print("Inserting failed: " );
+            e.printStackTrace();
+        }
+        return null;
+    }
 
     static Movie makeResultSetMovie(ResultSet rs) throws SQLException {
-        if (rs.next()) {
-
-
-            Movie m = new Movie(
-                    rs.getInt("id"),
-                    rs.getString("title"),
-                    rs.getDouble("rating"),
-                    StringToIntArr(rs.getString("genre_ids"))
-            );
-            return m;
-        } else throw new SQLException("ResultSet didn't fit criteria");
+        Movie m = new Movie(
+                rs.getInt("id"),
+                rs.getString("title"),
+                rs.getDouble("rating"),
+                StringToIntArr(rs.getString("genre_ids"))
+        );
+        return m;
     }
 }

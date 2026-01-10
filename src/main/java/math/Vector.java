@@ -7,6 +7,9 @@ public class Vector {
     public Vector(double[] eles) {
         this.elements = eles;
     }
+    public Vector() {
+        this.elements = new double[19];
+    }
 
     public int size() {
         return elements.length;
