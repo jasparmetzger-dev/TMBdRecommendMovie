@@ -50,15 +50,19 @@ public class ManageUserDb {
     }
 
     public static List<User> getAllUser() throws SQLException {
-        String sql = """
-                SELECT * FROM user
-                """;
-        ResultSet rs = DatabaseDAO.executeDbQuery(sql);
+        String sql = "SELECT * FROM user";
         List<User> allUser = new ArrayList<>();
-        while (rs.next()) {
-            User u = makeUser(rs);
-            allUser.add(u);
+
+        try (Connection conn = DatabaseDAO.connect();
+             PreparedStatement stmt = conn.prepareStatement(sql);
+             ResultSet rs = stmt.executeQuery()) {
+
+            while (rs.next()) {
+                User u = makeUser(rs);
+                allUser.add(u);
+            }
         }
+
         return allUser;
     }
 

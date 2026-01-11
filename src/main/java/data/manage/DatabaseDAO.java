@@ -65,15 +65,21 @@ public class DatabaseDAO {
         }
         return null;
     }
+
     public static List<Movie> getAllMovies() throws SQLException {
-        String sql = """
-                SELECT * FROM MOVIES
-                """;
-        ResultSet rs = executeDbQuery(sql);
+
+        String sql = " SELECT * FROM MOVIES";
         List<Movie> allMovies = new ArrayList<>();
-        while (rs.next()) {
-            Movie m = makeResultSetMovie(rs);
-            allMovies.add(m);
+
+        try (Connection conn = connect();
+            Statement stmt = conn.createStatement();
+             ResultSet rs = stmt.executeQuery(sql))
+        {
+            while (rs.next()) {
+                System.out.print(rs);
+                Movie m = makeResultSetMovie(rs);
+                allMovies.add(m);
+            }
         }
         return allMovies;
     }
