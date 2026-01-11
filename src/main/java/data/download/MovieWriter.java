@@ -17,7 +17,7 @@ public class MovieWriter {
 
         String sql = """
                 INSERT OR IGNORE INTO movies (title, rating, genre_ids)
-                VALUES ( ? , ? , ? , ? , ? , ? )
+                VALUES ( ? , ? , ? )
                 """;
         try (Connection conn = DriverManager.getConnection(DB_URL)) {
             PreparedStatement stmt = conn.prepareStatement(sql);

@@ -1,6 +1,7 @@
 package repository;
 
 import data.manage.DatabaseDAO;
+import data.manage.ManageUserDb;
 import model.movie.Movie;
 import model.user.Admin;
 import model.user.User;
@@ -14,8 +15,8 @@ public class Repository {
 
     public static List<User> userList = new ArrayList<>();
 
-    public Repository() {
-        userList.add(new Admin("root", "1234")); //make this getAllUsersFromDb;
+    public Repository() throws SQLException {
+        userList = ManageUserDb.getAllUser();
     }
 
     public static void addUser(User user) {
@@ -44,7 +45,9 @@ public class Repository {
         } return false;
     }
 
-    public static void saveUserList() {
-
+    public static void saveUserList() throws SQLException {
+        for (User u : userList) {
+            ManageUserDb.insertUser(u);
+        }
     }
 }

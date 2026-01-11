@@ -1,5 +1,7 @@
 package data.download;
 
+import data.manage.ManageUserDb;
+
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
@@ -13,9 +15,14 @@ public class MakeMoviesDb {
         try {
             Connection conn = connect();
             createMoviesTable(conn);
+            System.out.print("Made movies table.\n");
+            ManageUserDb.makeDb();
+            System.out.print("Made user table.\n");
+
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
+
     }
 
 

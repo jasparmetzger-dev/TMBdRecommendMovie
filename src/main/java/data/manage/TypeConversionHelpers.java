@@ -1,5 +1,8 @@
 package data.manage;
 
+import java.util.Arrays;
+import java.util.List;
+
 public class TypeConversionHelpers {
     public static String doubleArrToString(double[] arr) {
         if (arr == null || arr.length == 0) return "";
@@ -28,5 +31,9 @@ public class TypeConversionHelpers {
             result[i] = Integer.parseInt(parts[i].trim());
         }
         return result;
+    }
+    public static List<String> StringToListString(String s) {
+        String[] strs = s.split(",");
+        return Arrays.stream(strs).toList();
     }
 }

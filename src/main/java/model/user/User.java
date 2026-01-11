@@ -11,7 +11,7 @@ import java.util.List;
 
 public class User {
     public String username;
-    protected String encodedPassword;
+    public String encodedPassword;
     public List<String> watchedFilms;
     public int accessLevel = 1;
 
@@ -23,12 +23,13 @@ public class User {
         this.username = name;
         this.watchedFilms = new ArrayList<>();
     }
-    public User(String name, String password, int id, List<String> watchedFilms) {
+    public User(String name, String password, List<String> watchedFilms, int accessLevel) {
         this.encodedPassword = encode(password);
         this.username = name;
-        this.id = id;
         this.watchedFilms = watchedFilms;
+        this.accessLevel = accessLevel;
     }
+
 
     public boolean checkPassword(String password) {
         return password.equals(decode(encodedPassword));

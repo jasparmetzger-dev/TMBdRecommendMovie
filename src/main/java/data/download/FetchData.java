@@ -47,7 +47,7 @@ public class FetchData {
                     for (int i = 0; i < lst.size(); i++) arr[i] = lst.get(i);
 
                     Movie movie = new Movie(
-                            m.getTitle(),
+                            m.getTitle().toLowerCase().strip(),
                             m.getVoteAverage(),
                             arr
                     );

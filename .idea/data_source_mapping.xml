@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DataSourcePerFileMappings">
+    <file url="file://$APPLICATION_CONFIG_DIR$/consoles/db/6ff17d4f-c83b-4b1e-86e8-a5c7fce029d1/console.sql" value="6ff17d4f-c83b-4b1e-86e8-a5c7fce029d1" />
+    <file url="file://$PROJECT_DIR$/src/main/java/data/manage/ManageUserDb.java" value="ba725053-59e4-46d9-ad46-6ca23d557086" />
+  </component>
+</project>
