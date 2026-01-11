@@ -5,7 +5,7 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-public class MakeDb {
+public class MakeMoviesDb {
 
     private static final String DB_URL = "jdbc:sqlite:mydatabase.db";
 

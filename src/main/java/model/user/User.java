@@ -12,18 +12,22 @@ import java.util.List;
 public class User {
     public String username;
     protected String encodedPassword;
-    public List<String> watchedFilms = new ArrayList<>();
+    public List<String> watchedFilms;
     public int accessLevel = 1;
 
     private int id;
-    static int autoincrement = 1;
+
 
     public User(String name, String password) {
         this.encodedPassword = encode(password);
         this.username = name;
-
-        this.id = autoincrement;
-        autoincrement++;
+        this.watchedFilms = new ArrayList<>();
+    }
+    public User(String name, String password, int id, List<String> watchedFilms) {
+        this.encodedPassword = encode(password);
+        this.username = name;
+        this.id = id;
+        this.watchedFilms = watchedFilms;
     }
 
     public boolean checkPassword(String password) {

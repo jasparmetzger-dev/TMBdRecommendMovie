@@ -92,6 +92,7 @@ public class DatabaseDAO {
             throw new SQLException(e);
         }
     }
+
     public static void executeDbStatement(String sql) {
         try (Connection conn = DriverManager.getConnection(DB_URL)) {
             Statement stmt = conn.createStatement();
