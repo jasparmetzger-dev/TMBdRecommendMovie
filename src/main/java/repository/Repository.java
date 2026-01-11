@@ -15,7 +15,7 @@ public class Repository {
     public static List<User> userList = new ArrayList<>();
 
     public Repository() {
-        userList.add(new Admin("root", "1234"));
+        userList.add(new Admin("root", "1234")); //make this getAllUsersFromDb;
     }
 
     public static void addUser(User user) {
@@ -44,4 +44,7 @@ public class Repository {
         } return false;
     }
 
+    public static void saveUserList() {
+
+    }
 }

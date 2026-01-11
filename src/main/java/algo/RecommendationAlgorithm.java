@@ -16,6 +16,8 @@ public class RecommendationAlgorithm {
     User user;
     Vector userVector;
     List<Movie> seenMovies;
+    //atleast three unwatched movies :). will make 3 variable maybe
+    public int GET_MOVIE_AMOUNT = 3;
 
 
     public RecommendationAlgorithm(User user) throws SQLException {
@@ -52,8 +54,6 @@ public class RecommendationAlgorithm {
             scoreList.sort(Comparator.comparingDouble(ScoreMovie::score));
         }
         List<Movie> bestMovies = new ArrayList<>();
-        int GET_MOVIE_AMOUNT = 3;
-        //atleast three unwatched movies :). will make 3 variable maybe
 
         for (int i = 0; bestMovies.size() < GET_MOVIE_AMOUNT; i++) {
             Movie m = allMovies.get(i);
@@ -63,7 +63,5 @@ public class RecommendationAlgorithm {
         }
         return bestMovies;
     }
-
-
 
 }

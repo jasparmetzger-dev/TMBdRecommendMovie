@@ -1,6 +1,8 @@
 package model.user;
 
+import model.movie.Movie;
 import org.jetbrains.annotations.NotNull;
+import repository.Repository;
 
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
@@ -16,7 +18,7 @@ public class User {
     private int id;
     static int autoincrement = 1;
 
-    User(String name, String password) {
+    public User(String name, String password) {
         this.encodedPassword = encode(password);
         this.username = name;
 
@@ -45,7 +47,7 @@ public class User {
         } else throw new SecurityException("Wrong password, access denied");
     }
 
-    /* public void addWatchedFilms(@NotNull String[] titles) {
+    public void addWatchedFilms(@NotNull String[] titles) {
         for (String title : titles) {
             try {
                 Movie movie = Repository.getMovie(title);
@@ -54,7 +56,7 @@ public class User {
                 System.out.print("Couldn't find Movie " + title + ": " + e.getMessage());
             }
         }
-    } */
+    }
     public void deleteWatchedFilms(@NotNull String[] seenTitles) {
         for (String seenTitle : seenTitles) {
             try {

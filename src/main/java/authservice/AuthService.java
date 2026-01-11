@@ -8,9 +8,9 @@ import java.rmi.AccessException;
 
 public class AuthService {
     public static boolean loggedIn;
-    private static User loggedInUser;
+    public static User loggedInUser;
 
-    public void login(String username, String password, userRoles role) throws AccessException {
+    public static User login(String username, String password, userRoles role) throws AccessException {
         if (loggedIn) throw new AccessException("Already logged in");
 
         User user = Repository.getUser(username);
@@ -19,8 +19,9 @@ public class AuthService {
         }
         loggedIn = true;
         loggedInUser = user;
+        return user;
     }
-    public void logout() throws Exception{
+    public static void logout() throws Exception{
         if (!loggedIn) {
             throw new Exception("Not logged in");
         }
