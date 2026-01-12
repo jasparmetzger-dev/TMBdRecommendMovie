@@ -55,7 +55,7 @@ public class DatabaseDAO {
             stmt.setString(1, "%" + title + "%");
 
             try (ResultSet rs = stmt.executeQuery()) {
-                System.out.print(title + ": " + rs);
+                System.out.println(title + " found at : " + rs);
                 if (rs.next()) {
                     return makeResultSetMovie(rs);
                 } else {

@@ -16,16 +16,18 @@ public class UserInterface implements Interface {
     public record Action(String action) {}
 
     public  void makeInterface() throws Exception {
+        while (true) {
+            String action = showHomepage().action;
 
-        String action = showHomepage().action;
-
-        switch (action) {
-            case "1" -> editList();
-            case "2" -> getRecommended();
-            case null, default -> {
-                Repository.saveUserList();
-                AuthService.logout();
-                LoginInterface.makeInterface();
+            switch (action) {
+                case "1" -> editList();
+                case "2" -> getRecommended();
+                case null, default -> {
+                    Repository.saveUserList();
+                    AuthService.logout();
+                    LoginInterface.makeInterface();
+                    return;
+                }
             }
         }
     }

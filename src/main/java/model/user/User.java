@@ -27,7 +27,9 @@ public class User {
     public User(String name, String encodedPassword, List<String> watchedFilms, int accessLevel) {
         this.encodedPassword = encodedPassword;
         this.username = name;
-        this.watchedFilms = watchedFilms;
+        if (watchedFilms != null) {
+            this.watchedFilms = new ArrayList<>(watchedFilms);
+        } else {this.watchedFilms = new ArrayList<>();}
         this.accessLevel = accessLevel;
     }
 
@@ -58,7 +60,6 @@ public class User {
             System.out.println("Searching for movie " + title);
             try {
                 Movie movie = Repository.getMovie(title);
-                System.out.println(movie.title + "; " + movie.Id);
                 if (movie == null) {
                     System.out.println("Movie not found: [" + title + "]");
                     return;
