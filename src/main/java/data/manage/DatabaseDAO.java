@@ -46,24 +46,24 @@ public class DatabaseDAO {
         String sql = """
                 SELECT * 
                 FROM MOVIES
-                WHERE title = ?
+                WHERE title LIKE  ? 
+                LIMIT 1
                 """;
 
         try (Connection conn = DriverManager.getConnection(DB_URL)) {
             PreparedStatement stmt = conn.prepareStatement(sql);
-            stmt.setString(1, title);
+            stmt.setString(1, "%" + title + "%");
 
             try (ResultSet rs = stmt.executeQuery()) {
+                System.out.print(title + ": " + rs);
                 if (rs.next()) {
                     return makeResultSetMovie(rs);
-                } else return null;
+                } else {
+                    System.out.println("No DB match for: [" + title + "]");
+                    return null;
+                }
             }
         }
-        catch (SQLException e) {
-            System.out.print("Inserting failed: " );
-            e.printStackTrace();
-        }
-        return null;
     }
 
     public static List<Movie> getAllMovies() throws SQLException {
@@ -126,6 +126,7 @@ public class DatabaseDAO {
                 rs.getDouble("rating"),
                 StringToIntArr(rs.getString("genre_ids"))
         );
+        System.out.println("correctly retrieved movie.");
         return m;
     }
 }

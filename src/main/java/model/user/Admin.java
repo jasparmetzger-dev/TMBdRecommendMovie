@@ -2,11 +2,16 @@ package model.user;
 
 import repository.Repository;
 
+import java.util.List;
+
 public class Admin extends User {
 
     public Admin(String name, String password) {
         super(name, password);
         accessLevel = 10;
+    }
+    public Admin(String name, String encodedPassword, List<String> watchedFilms, int accessLevel) {
+        super(name, encodedPassword, watchedFilms, accessLevel);
     }
 
     private void changeUserPassword(User user, String newPassword) {

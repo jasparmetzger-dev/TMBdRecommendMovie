@@ -6,6 +6,8 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
+import static data.manage.DatabaseDAO.connect;
+
 public class ManageUserDb {
 
     private static final String DB_URL = "jdbc:sqlite:mydatabase.db";
@@ -31,17 +33,20 @@ public class ManageUserDb {
                 VALUES ( ? , ? , ? , ? )
                 """;
 
-        try (Connection conn = DriverManager.getConnection(DB_URL)) {
+        try (Connection conn = connect()) {
             PreparedStatement stmt = conn.prepareStatement(sql);
 
             StringBuilder sb = new StringBuilder();
             for (String title : user.watchedFilms) {
                 sb.append(title);
+                sb.append(",");
             }
             stmt.setString(1, user.username);
             stmt.setString(2, user.encodedPassword);
             stmt.setString(3, sb.toString());
             stmt.setInt(4, user.accessLevel);
+
+            stmt.execute();
 
         } catch (SQLException e) {
             System.out.print("Connection failed: " + e.getMessage());
@@ -53,7 +58,7 @@ public class ManageUserDb {
         String sql = "SELECT * FROM user";
         List<User> allUser = new ArrayList<>();
 
-        try (Connection conn = DatabaseDAO.connect();
+        try (Connection conn = connect();
              PreparedStatement stmt = conn.prepareStatement(sql);
              ResultSet rs = stmt.executeQuery()) {
 

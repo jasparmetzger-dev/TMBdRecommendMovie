@@ -5,6 +5,7 @@ import org.jetbrains.annotations.NotNull;
 import repository.Repository;
 
 import java.nio.charset.StandardCharsets;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Base64;
 import java.util.List;
@@ -23,8 +24,8 @@ public class User {
         this.username = name;
         this.watchedFilms = new ArrayList<>();
     }
-    public User(String name, String password, List<String> watchedFilms, int accessLevel) {
-        this.encodedPassword = encode(password);
+    public User(String name, String encodedPassword, List<String> watchedFilms, int accessLevel) {
+        this.encodedPassword = encodedPassword;
         this.username = name;
         this.watchedFilms = watchedFilms;
         this.accessLevel = accessLevel;
@@ -52,17 +53,25 @@ public class User {
         } else throw new SecurityException("Wrong password, access denied");
     }
 
-    public void addWatchedFilms(@NotNull String[] titles) {
+    public void addWatchedFilms(@NotNull List<String> titles) {
         for (String title : titles) {
+            System.out.println("Searching for movie " + title);
             try {
                 Movie movie = Repository.getMovie(title);
-                this.watchedFilms.add(title);
-            } catch (Exception e) {
-                System.out.print("Couldn't find Movie " + title + ": " + e.getMessage());
+                System.out.println(movie.title + "; " + movie.Id);
+                if (movie == null) {
+                    System.out.println("Movie not found: [" + title + "]");
+                    return;
+                }
+                System.out.println(watchedFilms);
+                this.watchedFilms.add(movie.title);
+                System.out.print("found " + movie.title);
+            } catch (SQLException e) {
+                throw new RuntimeException(e);
             }
         }
     }
-    public void deleteWatchedFilms(@NotNull String[] seenTitles) {
+    public void deleteWatchedFilms(@NotNull List<String> seenTitles) {
         for (String seenTitle : seenTitles) {
             try {
                 watchedFilms.remove(seenTitle);

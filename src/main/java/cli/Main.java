@@ -18,10 +18,8 @@ public class Main {
         User user = LoginInterface.makeInterface();
 
         if (AuthService.loggedIn) {
-
             UserInterface ui = (user.getClass() == Admin.class) ? new AdminInterface() : new UserInterface();
             ui.makeInterface();
-
         }
     }
 }

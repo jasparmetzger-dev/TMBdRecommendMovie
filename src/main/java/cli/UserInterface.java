@@ -5,9 +5,12 @@ import authservice.AuthService;
 import model.movie.Movie;
 import repository.Repository;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
 import java.util.concurrent.TimeUnit;
+import java.util.stream.Collectors;
 
 public class UserInterface implements Interface {
     public record Action(String action) {}
@@ -81,15 +84,15 @@ public class UserInterface implements Interface {
         switch (action) {
             case "r" -> makeInterface();
             case "1" -> {
-                System.out.println("\n enter your additional watched movies here (film1, film2, film3):\n");
+                System.out.println("\n enter your additional watched movies here (film1§film2§film3):\n");
                 String titles = sc.next();
-                String[] titleArr = titles.toLowerCase().split(", ");
+                List<String> titleArr = parseTitles(titles);
                 AuthService.loggedInUser.addWatchedFilms(titleArr);
             }
             case "2" -> {
-                System.out.println("\n enter movies to be deleted here (film1, film2, film3):\n");
+                System.out.println("\n enter movies to be deleted here (film1§film2§film3):\n");
                 String titles = sc.next();
-                String[] titleArr = titles.toLowerCase().split(", ");
+                List<String> titleArr = parseTitles(titles);
                 AuthService.loggedInUser.deleteWatchedFilms(titleArr);
             }
             case null, default -> {
@@ -97,7 +100,18 @@ public class UserInterface implements Interface {
                 makeInterface();
             }
         }
-
     }
 
+    public List<String> parseTitles(String s) {
+        if (s == null || s.isBlank()) {
+            return new ArrayList<>();
+        }
+
+        return new ArrayList<>(
+                Arrays.stream(s.split("§"))
+                        .map(String::trim)
+                        .filter(t -> !t.isEmpty())
+                        .toList()
+        );
+    }
 }
