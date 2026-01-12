@@ -86,13 +86,13 @@ public class UserInterface implements Interface {
         switch (action) {
             case "r" -> makeInterface();
             case "1" -> {
-                System.out.println("\n enter your additional watched movies here (film1§film2§film3):\n");
+                System.out.println("\n enter your additional watched movie here:\n");
                 String titles = sc.next();
                 List<String> titleArr = parseTitles(titles);
                 AuthService.loggedInUser.addWatchedFilms(titleArr);
             }
             case "2" -> {
-                System.out.println("\n enter movies to be deleted here (film1§film2§film3):\n");
+                System.out.println("\n enter movies to be deleted here:\n");
                 String titles = sc.next();
                 List<String> titleArr = parseTitles(titles);
                 AuthService.loggedInUser.deleteWatchedFilms(titleArr);
